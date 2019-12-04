@@ -18,7 +18,7 @@ const loadInput = async () => {
   return input
 }
 
-describe('Day 1', () => {
+describe('Day 2', () => {
   describe('Part 1', () => {
     it('example input noun=12 and verb=2 for result 1202', async () => {
       const input = await loadInput()

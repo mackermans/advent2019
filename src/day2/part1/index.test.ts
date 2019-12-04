@@ -4,30 +4,16 @@ import readline from 'readline'
 
 import solution, { program } from '.'
 
-describe('Day 1', () => {
+describe('Day 2', () => {
   describe('Part 1', () => {
-    it('example program 1,0,0,0,99', () => {
-      const input: Array<number> = [1,0,0,0,99]
+    test.each([
+      [[2], [1,0,0,0,99]],
+      [[2], [2,3,0,3,99]],
+      [[2], [2,4,4,5,99,0]],
+      [[30], [1,1,1,4,99,5,6,0,99]],
+    ])('example program (expected: %s, input: %s))', (expected, input) => {
       const result = program(input)
-      expect(result).toBe(2)
-    })
-
-    it('example program 2,3,0,3,99', () => {
-      const input: Array<number> = [2,3,0,3,99]
-      const result = program(input)
-      expect(result).toBe(2)
-    })
-
-    it('example program 2,4,4,5,99,0', () => {
-      const input: Array<number> = [2,4,4,5,99,0]
-      const result = program(input)
-      expect(result).toBe(2)
-    })
-
-    it('example program 1,1,1,4,99,5,6,0,99', () => {
-      const input: Array<number> = [1,1,1,4,99,5,6,0,99]
-      const result = program(input)
-      expect(result).toBe(30)
+      expect(result).toBe(expected[0])
     })
 
     it('calculates the value left at position 0 of the gravity assist program', async () => {
