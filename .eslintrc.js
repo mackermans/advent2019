@@ -25,12 +25,12 @@ module.exports = {
   rules: {
     'quote-props': ['error', 'as-needed'],
     'comma-dangle': ['error', 'always-multiline'],
-    indent: ['error', 2],
+    indent: ['error', 2, {
+      SwitchCase: 1,
+    }],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
-    'max-len': ['warn', {
-      code: 120,
-    }],
+    '@typescript-eslint/no-use-before-define': ['warn'],
   }
 };
