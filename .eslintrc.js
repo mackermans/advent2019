@@ -6,8 +6,9 @@ module.exports = {
   },
   extends: [
     "eslint:recommended",
-    "plugin:@typescript-eslint/eslint-recommended",
-    "plugin:@typescript-eslint/recommended"
+    "plugin:@typescript-eslint/recommended",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
   ],
   globals: {
     Atomics: 'readonly',
@@ -15,7 +16,6 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
-    project: './tsconfig.json',
     ecmaVersion: 2018,
     sourceType: 'module',
   },
@@ -30,7 +30,7 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
     'max-len': ['warn', {
-      code: 80,
+      code: 120,
     }],
   }
 };
