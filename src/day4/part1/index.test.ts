@@ -1,6 +1,6 @@
 import solution, { validateNumber } from '.'
 
-describe('Day 3', () => {
+describe('Day 4', () => {
   describe('Part 1', () => {
     test.each([
       [false, 111],
