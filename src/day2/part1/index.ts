@@ -11,7 +11,7 @@ export const program = (input: Array<number>) => {
 
   while (opcode != 99) {
     opcode = output[currentPosition]
-    switch(opcode) {
+    switch (opcode) {
       case 1:
         output = operationAdd(output, currentPosition)
         break
@@ -21,18 +21,17 @@ export const program = (input: Array<number>) => {
       case 99:
         continue
       default:
-        throw Error("unknown opcode encountered")
+        throw Error('unknown opcode encountered')
     }
     currentPosition += 4
   }
   return output[0]
-
 }
 
 const calculatePositions = (array: Array<number>, position: number) => {
-  const one = array[position+1]
-  const two = array[position+2]
-  const toOverwrite = array[position+3]
+  const one = array[position + 1]
+  const two = array[position + 2]
+  const toOverwrite = array[position + 3]
   return {
     one,
     two,

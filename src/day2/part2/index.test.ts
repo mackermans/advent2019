@@ -9,7 +9,7 @@ const loadInput = async () => {
 
   const rl = readline.createInterface({
     input: fs.createReadStream(path.join(__dirname, 'fixture.txt')),
-    crlfDelay: Infinity
+    crlfDelay: Infinity,
   })
 
   for await (const line of rl) {

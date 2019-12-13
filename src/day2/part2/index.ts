@@ -25,7 +25,7 @@ export const program = (input: Array<number>, noun: number, verb: number) => {
 
   while (opcode != 99) {
     opcode = output[currentAddress]
-    switch(opcode) {
+    switch (opcode) {
       case 1:
         output = operationAdd(output, currentAddress)
         break
@@ -35,7 +35,7 @@ export const program = (input: Array<number>, noun: number, verb: number) => {
       case 99:
         continue
       default:
-        throw Error("unknown opcode encountered")
+        throw Error('unknown opcode encountered')
     }
     currentAddress += 4
   }
@@ -43,9 +43,9 @@ export const program = (input: Array<number>, noun: number, verb: number) => {
 }
 
 const calculateAddresses = (array: Array<number>, address: number) => {
-  const paramOne = array[address+1]
-  const paramTwo = array[address+2]
-  const paramThree = array[address+3]
+  const paramOne = array[address + 1]
+  const paramTwo = array[address + 2]
+  const paramThree = array[address + 3]
   return {
     paramOne,
     paramTwo,

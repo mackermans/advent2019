@@ -1,17 +1,17 @@
 type Coordinates = {
-  x: number,
-  y: number,
+  x: number
+  y: number
 }
 
 type Line = {
-  stepsAtStart: number,
-  startCoords: Coordinates,
-  endCoords: Coordinates,
+  stepsAtStart: number
+  startCoords: Coordinates
+  endCoords: Coordinates
 }
 
 type Lines = {
-  horizontal: Array<Line>,
-  vertical: Array<Line>,
+  horizontal: Array<Line>
+  vertical: Array<Line>
 }
 
 const solution = (input: Array<string>) => {
@@ -21,10 +21,10 @@ const solution = (input: Array<string>) => {
 }
 
 const drawWire = (path: string) => {
-  let horizontalLines = [] as Array<Line>
-  let verticalLines = [] as Array<Line>
+  const horizontalLines = [] as Array<Line>
+  const verticalLines = [] as Array<Line>
   let currentCoords = { x: 0, y: 0 }
-  let nextCoords = { ... currentCoords }
+  let nextCoords = { ...currentCoords }
   let newX
   let newY
   let steps = 0
@@ -89,7 +89,7 @@ const drawWire = (path: string) => {
 
   return {
     horizontal: horizontalLines,
-    vertical: verticalLines
+    vertical: verticalLines,
   }
 }
 
@@ -97,8 +97,8 @@ const findMinimalSteps = (lines1: Lines, lines2: Lines) => {
   let minimalSteps = -1
   let steps
 
-  lines1.horizontal.forEach((horizontalLine) => {
-    lines2.vertical.forEach((verticalLine) => {
+  lines1.horizontal.forEach(horizontalLine => {
+    lines2.vertical.forEach(verticalLine => {
       steps = findIntersectionSteps(horizontalLine, verticalLine)
       if ((steps > -1 && steps < minimalSteps) || minimalSteps === -1) {
         minimalSteps = steps
@@ -106,8 +106,8 @@ const findMinimalSteps = (lines1: Lines, lines2: Lines) => {
     })
   })
 
-  lines2.horizontal.forEach((horizontalLine) => {
-    lines1.vertical.forEach((verticalLine) => {
+  lines2.horizontal.forEach(horizontalLine => {
+    lines1.vertical.forEach(verticalLine => {
       steps = findIntersectionSteps(horizontalLine, verticalLine)
       if ((steps > -1 && steps < minimalSteps) || minimalSteps === -1) {
         minimalSteps = steps
@@ -123,14 +123,10 @@ const findIntersectionSteps = (horizontalLine: Line, verticalLine: Line) => {
   const verticalX = verticalLine.startCoords.x
 
   if (
-    (
-      (verticalX >= horizontalLine.startCoords.x && verticalX <= horizontalLine.endCoords.x) ||
-      (verticalX <= horizontalLine.startCoords.x && verticalX >= horizontalLine.endCoords.x)
-    ) &&
-    (
-      (horizontalY >= verticalLine.startCoords.y && horizontalY <= verticalLine.endCoords.y) ||
-      (horizontalY <= verticalLine.startCoords.y && horizontalY >= verticalLine.endCoords.y)
-    ) &&
+    ((verticalX >= horizontalLine.startCoords.x && verticalX <= horizontalLine.endCoords.x) ||
+      (verticalX <= horizontalLine.startCoords.x && verticalX >= horizontalLine.endCoords.x)) &&
+    ((horizontalY >= verticalLine.startCoords.y && horizontalY <= verticalLine.endCoords.y) ||
+      (horizontalY <= verticalLine.startCoords.y && horizontalY >= verticalLine.endCoords.y)) &&
     !(verticalX === 0 && horizontalY === 0)
   ) {
     const horizontalSteps = horizontalLine.stepsAtStart + Math.abs(verticalX - horizontalLine.startCoords.x)

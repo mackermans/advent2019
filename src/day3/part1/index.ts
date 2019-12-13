@@ -1,16 +1,16 @@
 type Coordinates = {
-  x: number,
-  y: number,
+  x: number
+  y: number
 }
 
 type Line = {
-  startCoords: Coordinates,
-  endCoords: Coordinates,
+  startCoords: Coordinates
+  endCoords: Coordinates
 }
 
 type Lines = {
-  horizontal: Array<Line>,
-  vertical: Array<Line>,
+  horizontal: Array<Line>
+  vertical: Array<Line>
 }
 
 const solution = (input: Array<string>) => {
@@ -20,10 +20,10 @@ const solution = (input: Array<string>) => {
 }
 
 const drawWire = (path: string) => {
-  let horizontalLines = [] as Array<Line>
-  let verticalLines = [] as Array<Line>
+  const horizontalLines = [] as Array<Line>
+  const verticalLines = [] as Array<Line>
   let currentCoords = { x: 0, y: 0 }
-  let nextCoords = { ... currentCoords }
+  let nextCoords = { ...currentCoords }
   let newX
   let newY
 
@@ -82,7 +82,7 @@ const drawWire = (path: string) => {
 
   return {
     horizontal: horizontalLines,
-    vertical: verticalLines
+    vertical: verticalLines,
   }
 }
 
@@ -90,8 +90,8 @@ const findMinimalDistance = (lines1: Lines, lines2: Lines) => {
   let minimalDistance = -1
   let distance
 
-  lines1.horizontal.forEach((horizontalLine) => {
-    lines2.vertical.forEach((verticalLine) => {
+  lines1.horizontal.forEach(horizontalLine => {
+    lines2.vertical.forEach(verticalLine => {
       distance = findIntersection(horizontalLine, verticalLine)
       if (distance > 0 && (distance < minimalDistance || minimalDistance === -1)) {
         minimalDistance = distance
@@ -99,8 +99,8 @@ const findMinimalDistance = (lines1: Lines, lines2: Lines) => {
     })
   })
 
-  lines2.horizontal.forEach((horizontalLine) => {
-    lines1.vertical.forEach((verticalLine) => {
+  lines2.horizontal.forEach(horizontalLine => {
+    lines1.vertical.forEach(verticalLine => {
       distance = findIntersection(horizontalLine, verticalLine)
       if (distance > 0 && (distance < minimalDistance || minimalDistance === -1)) {
         minimalDistance = distance

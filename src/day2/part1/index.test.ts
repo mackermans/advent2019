@@ -7,10 +7,10 @@ import solution, { program } from '.'
 describe('Day 2', () => {
   describe('Part 1', () => {
     test.each([
-      [[2], [1,0,0,0,99]],
-      [[2], [2,3,0,3,99]],
-      [[2], [2,4,4,5,99,0]],
-      [[30], [1,1,1,4,99,5,6,0,99]],
+      [[2], [1, 0, 0, 0, 99]],
+      [[2], [2, 3, 0, 3, 99]],
+      [[2], [2, 4, 4, 5, 99, 0]],
+      [[30], [1, 1, 1, 4, 99, 5, 6, 0, 99]],
     ])('example program (expected: %s, input: %s))', (expected, input) => {
       const result = program(input)
       expect(result).toBe(expected[0])
@@ -21,7 +21,7 @@ describe('Day 2', () => {
 
       const rl = readline.createInterface({
         input: fs.createReadStream(path.join(__dirname, 'fixture.txt')),
-        crlfDelay: Infinity
+        crlfDelay: Infinity,
       })
 
       for await (const line of rl) {
