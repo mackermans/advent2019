@@ -14,13 +14,51 @@ type Lines = {
   vertical: Array<Line>
 }
 
-const solution = (input: Array<string>) => {
-  const lines1 = drawWire(input[0]) as Lines
-  const lines2 = drawWire(input[1]) as Lines
-  return findMinimalSteps(lines1, lines2)
+const findIntersectionSteps = (horizontalLine: Line, verticalLine: Line): number => {
+  const horizontalY = horizontalLine.startCoords.y
+  const verticalX = verticalLine.startCoords.x
+
+  if (
+    ((verticalX >= horizontalLine.startCoords.x && verticalX <= horizontalLine.endCoords.x) ||
+      (verticalX <= horizontalLine.startCoords.x && verticalX >= horizontalLine.endCoords.x)) &&
+    ((horizontalY >= verticalLine.startCoords.y && horizontalY <= verticalLine.endCoords.y) ||
+      (horizontalY <= verticalLine.startCoords.y && horizontalY >= verticalLine.endCoords.y)) &&
+    !(verticalX === 0 && horizontalY === 0)
+  ) {
+    const horizontalSteps = horizontalLine.stepsAtStart + Math.abs(verticalX - horizontalLine.startCoords.x)
+    const verticalSteps = verticalLine.stepsAtStart + Math.abs(horizontalY - verticalLine.startCoords.y)
+    return horizontalSteps + verticalSteps
+  }
+
+  return -1
 }
 
-const drawWire = (path: string) => {
+const findMinimalSteps = (lines1: Lines, lines2: Lines): number => {
+  let minimalSteps = -1
+  let steps
+
+  lines1.horizontal.forEach(horizontalLine => {
+    lines2.vertical.forEach(verticalLine => {
+      steps = findIntersectionSteps(horizontalLine, verticalLine)
+      if ((steps > -1 && steps < minimalSteps) || minimalSteps === -1) {
+        minimalSteps = steps
+      }
+    })
+  })
+
+  lines2.horizontal.forEach(horizontalLine => {
+    lines1.vertical.forEach(verticalLine => {
+      steps = findIntersectionSteps(horizontalLine, verticalLine)
+      if ((steps > -1 && steps < minimalSteps) || minimalSteps === -1) {
+        minimalSteps = steps
+      }
+    })
+  })
+
+  return minimalSteps
+}
+
+const drawWire = (path: string): Lines => {
   const horizontalLines = [] as Array<Line>
   const verticalLines = [] as Array<Line>
   let currentCoords = { x: 0, y: 0 }
@@ -93,48 +131,10 @@ const drawWire = (path: string) => {
   }
 }
 
-const findMinimalSteps = (lines1: Lines, lines2: Lines) => {
-  let minimalSteps = -1
-  let steps
-
-  lines1.horizontal.forEach(horizontalLine => {
-    lines2.vertical.forEach(verticalLine => {
-      steps = findIntersectionSteps(horizontalLine, verticalLine)
-      if ((steps > -1 && steps < minimalSteps) || minimalSteps === -1) {
-        minimalSteps = steps
-      }
-    })
-  })
-
-  lines2.horizontal.forEach(horizontalLine => {
-    lines1.vertical.forEach(verticalLine => {
-      steps = findIntersectionSteps(horizontalLine, verticalLine)
-      if ((steps > -1 && steps < minimalSteps) || minimalSteps === -1) {
-        minimalSteps = steps
-      }
-    })
-  })
-
-  return minimalSteps
-}
-
-const findIntersectionSteps = (horizontalLine: Line, verticalLine: Line) => {
-  const horizontalY = horizontalLine.startCoords.y
-  const verticalX = verticalLine.startCoords.x
-
-  if (
-    ((verticalX >= horizontalLine.startCoords.x && verticalX <= horizontalLine.endCoords.x) ||
-      (verticalX <= horizontalLine.startCoords.x && verticalX >= horizontalLine.endCoords.x)) &&
-    ((horizontalY >= verticalLine.startCoords.y && horizontalY <= verticalLine.endCoords.y) ||
-      (horizontalY <= verticalLine.startCoords.y && horizontalY >= verticalLine.endCoords.y)) &&
-    !(verticalX === 0 && horizontalY === 0)
-  ) {
-    const horizontalSteps = horizontalLine.stepsAtStart + Math.abs(verticalX - horizontalLine.startCoords.x)
-    const verticalSteps = verticalLine.stepsAtStart + Math.abs(horizontalY - verticalLine.startCoords.y)
-    return horizontalSteps + verticalSteps
-  }
-
-  return -1
+const solution = (input: Array<string>): number => {
+  const lines1 = drawWire(input[0]) as Lines
+  const lines2 = drawWire(input[1]) as Lines
+  return findMinimalSteps(lines1, lines2)
 }
 
 export default solution

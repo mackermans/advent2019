@@ -4,7 +4,7 @@ import readline from 'readline'
 
 import solution, { program } from '.'
 
-const loadInput = async () => {
+const loadInput = async (): Promise<Array<number>> => {
   let input: Array<number> = []
 
   const rl = readline.createInterface({

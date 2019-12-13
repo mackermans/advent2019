@@ -1,12 +1,4 @@
-const solution = (input: Array<number>) => {
-  const fuelSum = input.reduce((sum, value) => {
-    const moduleFuelRequired = calculateFuel(value)
-    return sum + moduleFuelRequired
-  }, 0)
-  return fuelSum
-}
-
-const calculateFuel = (mass: number) => {
+const calculateFuel = (mass: number): number => {
   let massLeft = mass
   let sum = 0
   while (massLeft > 0) {
@@ -16,6 +8,14 @@ const calculateFuel = (mass: number) => {
     }
   }
   return sum
+}
+
+const solution = (input: Array<number>): number => {
+  const fuelSum = input.reduce((sum, value) => {
+    const moduleFuelRequired = calculateFuel(value)
+    return sum + moduleFuelRequired
+  }, 0)
+  return fuelSum
 }
 
 export default solution
