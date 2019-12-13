@@ -5,7 +5,9 @@
   "author": "Maarten Ackermans <maarten.ackermans@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "jest"
+    "start": "jest",
+    "lint": "eslint --ext .js,.ts .",
+    "lint:fix": "eslint --fix --ext .js,.ts ."
   },
   "devDependencies": {
     "@babel/cli": "^7.7.4",
@@ -16,6 +18,8 @@
     "@babel/preset-typescript": "^7.7.4",
     "@types/jest": "^24.0.23",
     "@types/node": "^12.12.14",
+    "@typescript-eslint/eslint-plugin": "^2.11.0",
+    "@typescript-eslint/parser": "^2.11.0",
     "babel-jest": "^24.9.0",
     "jest": "^24.9.0",
     "ts-jest": "^24.2.0",
