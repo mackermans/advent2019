@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path from 'path'
+
 import solution, { validateNumber } from '.'
 
 describe('Day 4', () => {
@@ -14,7 +17,7 @@ describe('Day 4', () => {
     })
 
     test('how many different passwords within the range given in your puzzle input meet the criteria', async () => {
-      const input = '172930-683082'
+      const input = fs.readFileSync(path.join(__dirname, 'input.txt')).toString()
       const result = solution(input)
       expect(result).toBe(1675)
     })
