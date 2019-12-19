@@ -30,3 +30,11 @@ type RawInput = Array<OrbitalObject>
 type MapData = Map<OrbitalObject, Array<OrbitalObject>>
 
 type Route = Array<OrbitalObject>
+
+// Day 7
+
+type ThrusterSignal = number
+
+type PhaseSetting = 0 | 1 | 2 | 3 | 4
+
+type PhaseSettingSequence = Array<PhaseSetting>
