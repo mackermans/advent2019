@@ -1,5 +1,3 @@
-const MAX_PHASE_SETTING = 5
-
 const parseMode = (mode: number | undefined): Mode => {
   if (!mode) {
     return {
