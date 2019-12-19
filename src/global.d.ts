@@ -1,3 +1,5 @@
+// Day 5
+
 interface Addresses {
   addressOne: number
   addressTwo: number
@@ -18,3 +20,13 @@ interface OperationResult {
   program: Program
   output: number
 }
+
+// Day 6
+
+type OrbitalObject = string
+
+type RawInput = Array<OrbitalObject>
+
+type MapData = Map<OrbitalObject, Array<OrbitalObject>>
+
+type Route = Array<OrbitalObject>
